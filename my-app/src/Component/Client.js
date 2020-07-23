@@ -22,7 +22,7 @@ const formSchema = yup.object().shape({
 const Client = () => {
 
     //default state 
-    const [defaultState, setDefaultState] = useState({
+    const [defaultState ] = useState({
         firstName: "",
         lastName: "",
         streetAdd1: "",
@@ -108,6 +108,7 @@ const validateChange = e => {
            name="firstName"
            id="firstName"
            onChange={inputChange}
+           value={clientRegState.firstName}
             />
             {errors.firstName.length > 0 ? <p className='error'>{errors.firstName}</p> : null}
        </label>
@@ -119,6 +120,7 @@ const validateChange = e => {
            name="lastName"
            id="lastName"
            onChange={inputChange}
+           value={clientRegState.lastName}
             />
             {errors.lastName.length > 0 ? <p className='error'>{errors.lastName}</p> : null}
        </label>
@@ -130,6 +132,7 @@ const validateChange = e => {
            name="streetAdd1"
            id="streetAdd1"
            onChange={inputChange}
+           value={clientRegState.streetAdd1}
            
             />
             {errors.streetAdd1.length > 0 ? <p className='error'>{errors.streetAdd1}</p> : null}
@@ -142,6 +145,7 @@ const validateChange = e => {
            name="streetAdd2"
            id="streetAdd2"
            onChange={inputChange}
+           value={clientRegState.streetAdd2}
             />
             {errors.streetAdd2.length > 0 ? <p className='error'>{errors.streetAdd2}</p> : null}
        </label>
@@ -153,6 +157,7 @@ const validateChange = e => {
            name="city"
            id="city"
            onChange={inputChange}
+           value={clientRegState.city}
             />
             {errors.city.length > 0 ? <p className='error'>{errors.city}</p> : null}
        </label>
@@ -164,6 +169,7 @@ const validateChange = e => {
            name="state"
            id="state"
            onChange={inputChange}
+           value={clientRegState.city}
             />
             {errors.state.length > 0 ? <p className='error'>{errors.state}</p> : null}
        </label>
@@ -175,6 +181,7 @@ const validateChange = e => {
            name="zipCode"
            id="zipCode"
            onChange={inputChange}
+           value={clientRegState.zipCode}
             />
             {errors.zipCode.length > 0 ? <p className='error'>{errors.zipCode}</p> : null}
        </label>
@@ -186,6 +193,7 @@ const validateChange = e => {
            name="phone"
            id="phone"
            onChange={inputChange}
+           value={clientRegState.phone}
             />
             {errors.phone.length > 0 ? <p className='error'>{errors.phone}</p> : null}
        </label>
@@ -197,6 +205,7 @@ const validateChange = e => {
            name="email"
            id="email"
            onChange={inputChange}
+           value={clientRegState.email}
             />
             {errors.email.length > 0 ? <p className='error'>{errors.email}</p> : null}
        </label>

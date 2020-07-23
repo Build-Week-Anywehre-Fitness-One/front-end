@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Client from './Component/Client'
-import Instructor from './Component/ClientLogin'
+import ClientLogin from './Component/ClientLogin'
 
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
 
       <Client />
      
-      <Instructor />
+      <ClientLogin />
 
     </div>
   );

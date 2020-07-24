@@ -9,11 +9,13 @@ const Home = () => {
             <Link to="/client-registration">
         <button>Click</button>
           </Link>
-
+        
+        <div className="instructor">
           <h1>User Registration (Instructor)</h1>
             <Link to="/instructor-registration">
         <button>Click</button>
           </Link>
+        </div>
 
          
         
@@ -25,9 +27,6 @@ const Home = () => {
         </div>
 
         </div>
-        
-
-
 
     )
 }

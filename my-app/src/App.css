@@ -105,5 +105,9 @@ button:disabled {
 }
 
 .login {
-  margin-top: 10rem;
+  margin-top: 8rem;
+}
+
+.instructor{
+  margin-top: 3rem;
 }

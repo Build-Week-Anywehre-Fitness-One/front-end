@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import * as yup from 'yup';
 import axios from 'axios';
 
@@ -27,10 +27,19 @@ const Client = () => {
     // State for the errors
   const [errors, setErrors] = useState(defaultState);
 
-//   console.log(errors)
+
 
 // new state to set our post request too. So we can console.log and see it.
 const [post, setPost] = useState([]);
+
+const [buttonDisabled, setButtonDisabled] = useState(true);
+
+
+useEffect(() => {
+  formSchema.isValid(clientRegState).then(valid => {
+    setButtonDisabled(!valid);
+  });
+}, [clientRegState]);
 
 const validateChange = e => {
 
@@ -86,7 +95,7 @@ const validateChange = e => {
        <div>
 
        
-       <h1>Personal Information</h1>
+       <h1>Client Sign up</h1>
        
        <form onSubmit={formSubmit}>
        <label htmlFor="username">
@@ -126,7 +135,7 @@ const validateChange = e => {
             {errors.role.length > 0 ? <p className='error'>{errors.role}</p> : null}
        </label>
 
-       <button type="submit">Submit</button>
+       <button type="submit" disabled={buttonDisabled}>Submit</button>
 
 
 

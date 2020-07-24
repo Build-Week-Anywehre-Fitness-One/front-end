@@ -103,3 +103,7 @@ button:disabled {
   display: inline-block;
   margin-right: 5px;
 }
+
+.login {
+  margin-top: 10rem;
+}

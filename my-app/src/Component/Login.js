@@ -5,31 +5,27 @@ import axios from 'axios';
 
 const formSchema = yup.object().shape({
     username: yup.string().required("This is a required field."),
-    password: yup.string().required("This is a required field."),
-    role: yup.string().required("This is a required field."),
+    password: yup.string().required("This is a required field.")
 
-    
   });
 
 
-const Client = () => {
+const Login = () => {
 
     //default state 
-    const [defaultState ] = useState({
+    const [defaultState] = useState({
         username: "",
-        password: "",
-        role: ""
-        
+        password: ""  
       })
 
     // managing state for our form inputs
-  const [clientRegState, setClientRegState] = useState(defaultState);
+  const [loginState, setLoginState] = useState(defaultState);
     // State for the errors
   const [errors, setErrors] = useState(defaultState);
 
 //   console.log(errors)
 
-// new state to set our post request too. So we can console.log and see it.
+// new state to set post request too. So we can console.log and see it.
 const [post, setPost] = useState([]);
 
 const validateChange = e => {
@@ -56,8 +52,8 @@ const validateChange = e => {
     //    console.log(e.target.value)
        e.persist();
 
-       setClientRegState({
-           ...clientRegState,
+       setLoginState({
+           ...loginState,
            [e.target.name] : e.target.value
        })
         
@@ -68,14 +64,14 @@ const validateChange = e => {
     // Submit handler
     const formSubmit = e => {
     
-        e.preventDefault();
-        axios
-      .post("https://anywhere-fitness-app1.herokuapp.com/api/register", clientRegState)
+      e.preventDefault();
+      axios
+      .post("https://anywhere-fitness-app1.herokuapp.com/api/login", loginState)
       .then(res => {
         setPost(res.data); 
         console.log("success", post);
         // reset form if successful
-        setClientRegState(defaultState);
+        setLoginState(defaultState);
       })
       .catch(err => console.log(err.response));
     };
@@ -86,7 +82,7 @@ const validateChange = e => {
        <div>
 
        
-       <h1>Personal Information</h1>
+       <h1>User Login</h1>
        
        <form onSubmit={formSubmit}>
        <label htmlFor="username">
@@ -96,7 +92,7 @@ const validateChange = e => {
            name="username"
            id="username"
            onChange={inputChange}
-           value={clientRegState.username}
+           value={loginState.username}
             />
             {errors.username.length > 0 ? <p className='error'>{errors.username}</p> : null}
        </label>
@@ -108,22 +104,9 @@ const validateChange = e => {
            name="password"
            id="password"
            onChange={inputChange}
-           value={clientRegState.password}
+           value={loginState.password}
             />
             {errors.password.length > 0 ? <p className='error'>{errors.password}</p> : null}
-       </label>
-
-       <label htmlFor="role">
-           Role
-           <input 
-           type="text"
-           name="role"
-           id="role"
-           onChange={inputChange}
-           value={clientRegState.role}
-           
-            />
-            {errors.role.length > 0 ? <p className='error'>{errors.role}</p> : null}
        </label>
 
        <button type="submit">Submit</button>
@@ -140,4 +123,4 @@ const validateChange = e => {
     
 }
 
-export default Client;
+export default Login;

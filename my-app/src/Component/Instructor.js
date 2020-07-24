@@ -1,30 +1,31 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import * as yup from 'yup';
 import axios from 'axios';
 
+
 const formSchema = yup.object().shape({
-    userName: yup.string().required("This is a required field."),
+    username: yup.string().required("This is a required field."),
     password: yup.string().required("This is a required field."),
-    confirmPassword: yup.string().required("This is a required field."),
-    terms: yup.boolean().oneOf([true], "please agree to terms of use")
-    
+    role: yup.string().required("This is a required field."),
+    auth_code: yup.string().required("This is a required field.")
+
     
   });
 
 
-const ClientLogin = () => {
+const Instructor = () => {
 
     //default state 
-    const [defaultState] = useState({
-        userName: "",
+    const [defaultState ] = useState({
+        username: "",
         password: "",
-        confirmPassword: "",
-        terms: false
+        role: "",
+        auth_code: ""
         
       })
 
     // managing state for our form inputs
-  const [clientAccState, setClientAccState] = useState(defaultState);
+  const [instructorRegState, setInstructorRegState] = useState(defaultState);
     // State for the errors
   const [errors, setErrors] = useState(defaultState);
 
@@ -57,29 +58,26 @@ const validateChange = e => {
     //    console.log(e.target.value)
        e.persist();
 
-       const newAccData = {
-        ...clientAccState,
-        [e.target.name]:
-          e.target.type === "checkbox" ? e.target.checked : e.target.value
-      };
-  
-      validateChange(e);
-      setClientAccState(newAccData);
-    };
+       setInstructorRegState({
+           ...instructorRegState,
+           [e.target.name] : e.target.value
+       })
+        
+       validateChange(e);
       
-   
+   }
 
     // Submit handler
     const formSubmit = e => {
     
         e.preventDefault();
-     axios
-      .post("https://reqres.in/api/users", clientAccState)
+      axios
+      .post("https://anywhere-fitness-app1.herokuapp.com/api/register", instructorRegState)
       .then(res => {
         setPost(res.data);
         console.log("success", post);
         // reset form if successful
-        setClientAccState(defaultState);
+        setInstructorRegState(defaultState);
       })
       .catch(err => console.log(err.response));
     };
@@ -89,71 +87,72 @@ const validateChange = e => {
 
        <div>
 
-       <h1>Account Information</h1>
+       
+       <h1>Personal Information</h1>
        
        <form onSubmit={formSubmit}>
-       <label htmlFor="userName">
-           User Name
+       <label htmlFor="username">
+           Username
            <input
            type="text"
-           name="userName"
-           id="userName"
+           name="username"
+           id="username"
            onChange={inputChange}
-           value={clientAccState.userName}
+           value={instructorRegState.username}
             />
-            {errors.userName.length > 0 ? <p className='error'>{errors.userName}</p> : null}
+            {errors.username.length > 0 ? <p className='error'>{errors.username}</p> : null}
        </label>
 
        <label htmlFor="password">
-           password
+           Password
            <input 
            type="password"
            name="password"
            id="password"
            onChange={inputChange}
-           value={clientAccState.password}
-
+           value={instructorRegState.password}
             />
             {errors.password.length > 0 ? <p className='error'>{errors.password}</p> : null}
        </label>
 
-       <label htmlFor="confirmPassword">
-           Confirm Password
+       <label htmlFor="role">
+           Role
            <input 
-           type="password"
-           name="confirmPassword"
-           id="confirmPassword"
+           type="text"
+           name="role"
+           id="role"
            onChange={inputChange}
-           value={clientAccState.confirmPassword}
+           value={instructorRegState.role}
            
             />
-            {errors.confirmPassword.length > 0 ? <p className='error'>{errors.confirmPassword}</p> : null}
-       </label>
-       
-       <label htmlFor="terms">
-           Terms & Conditions
-           <input 
-           type="checkbox"
-           name="terms"
-           id="terms"
-           onChange={inputChange}
-           checked={clientAccState.terms}
-            />
-        
+            {errors.role.length > 0 ? <p className='error'>{errors.role}</p> : null}
        </label>
 
-       
+       <label htmlFor="auth_code">
+         Auth_code
+           <input 
+           type="text"
+           name="auth_code"
+           id="auth_code"
+           onChange={inputChange}
+           value={instructorRegState.auth_code}
+           
+            />
+            {errors.auth_code.length > 0 ? <p className='error'>{errors.auth_code}</p> : null}
+       </label>
+
        <button type="submit">Submit</button>
 
 
 
        </form>
-
+    
+       
 
        </div>
-
     )
+    
     
 }
 
-export default ClientLogin;
+export default Instructor;

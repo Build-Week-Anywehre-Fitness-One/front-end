@@ -1,18 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Client from './Component/Client'
-import ClientLogin from './Component/ClientLogin'
-
+import Client from './Component/Client';
+import { Route } from "react-router-dom";
+import Home from "./Component/Home";
+import Instructor from "./Component/Instructor";
+import Login from './Component/Login';
 
 function App() {
 
   return (
     <div className="App">
 
-      <Client />
-     
-      <ClientLogin />
+      <Route exact path="/" component={Home} />
+      
+      
+      <Route path="/client-registration" component={Client} />
+
+      <Route path="/instructor-registration" component={Instructor} />
+
+      <Route path="/user-login" component={Login} />
 
     </div>
   );

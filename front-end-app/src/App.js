@@ -1,16 +1,31 @@
 import React from 'react';
 import axios from 'axios';
-// import {Route, Link} from 'react-router-dom';
+import {Route, Link} from 'react-router-dom';
 import {InstructorRoute} from './Components/PrivateRoute/InstructorRoute';
+import Client from '../../front-end-app/src/Components/Client';
 import Instructor from './Components/Instructor/Instructor';
+import Home from "../../front-end-app/src/Components/Home";
+import RegInstructor from "./Components/RegInstructor";
+import Login from '../../front-end-app/src/Components/Login';
+import "./App.css";
 
 function App() {
   
   return (
     <div className="App">
       {/* //Make a Route to home that renders the Login page. */}
+      <h1>Testing</h1>
 
-      <InstructorRoute to="/Instructor" component={Instructor}/>
+      <Route exact path="/" component={Home} /> //ok
+      
+      
+      <Route exact path="/client-registration" component={Client} /> //ok
+
+      <Route exact path="/instructor-registration" component={RegInstructor} />
+
+      <Route path="/user-login" component={Login} />  //ok
+
+      <InstructorRoute exact path="/Instructor" component={Instructor}/>
     </div>
   );
 }

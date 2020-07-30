@@ -74,7 +74,7 @@ const validateChange = e => {
 
     return (
        <div>
-          <h1>User Login</h1>
+          <h1 class="headar-signin">Sign In</h1>
           
           <form onSubmit={formSubmit}>
           <label htmlFor="username">

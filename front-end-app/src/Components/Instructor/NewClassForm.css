@@ -1,7 +1,7 @@
 .NewClassForm {
     display: flex;
     flex-direction: column;
-    background-color: skyblue;
+    background-color: cadetblue;
     justify-content: center;
     width: 40%;
   }

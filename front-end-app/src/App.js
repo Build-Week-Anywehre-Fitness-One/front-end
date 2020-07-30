@@ -9,10 +9,13 @@ import RegInstructor from "./Components/RegInstructor";
 import Login from '../../front-end-app/src/Components/Login';
 import "./App.css";
 
+
 function App() {
   
   return (
     <div className="App">
+      {/* //Make a Route to home that renders the Login page. */}
+      
 
       <Route exact path="/" component={Home} />
       
@@ -26,5 +29,7 @@ function App() {
     </div>
   );
 }
+
+
 
 export default App;

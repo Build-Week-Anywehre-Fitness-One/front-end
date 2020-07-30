@@ -15,7 +15,7 @@ const Home = () => {
           <div>
             <h3>User Registration (Client)</h3>
             <Link to="/client-registration">
-        <button>Sign Up</button>
+            <button>Click</button>
           </Link>
           </div>
         

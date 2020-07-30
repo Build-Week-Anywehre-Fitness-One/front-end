@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import './NewClassForm.css';
 
 
-export default function NewClassForm({deleteClass, setCurrentClasses}) {
+export default function NewClassForm({deleteClass, setCurrentClasses, history}) {
 
     const formSchema = yup.object().shape({
 
@@ -20,11 +20,7 @@ export default function NewClassForm({deleteClass, setCurrentClasses}) {
         
       });
 
-    //   function deleteClass(id){
-    //     axios.delete(`https://anywhere-fitness-app1.herokuapp.com/api/classes/${id}`)
-    //         .then(res => console.log("Deleted!", res.data))
-    //         .catch(err => console.log(err))
-    // }
+   
      
     //Default state
     const [intitialClass] = useState({
@@ -87,10 +83,11 @@ export default function NewClassForm({deleteClass, setCurrentClasses}) {
         authAxios()
             .post("https://anywhere-fitness-app1.herokuapp.com/api/classes", classes)
             .then(res => {
-                setCurrentClasses(res.data)
+                setCurrentClasses(res.data)  //adds to Instructor state to render
                 setClasses(intitialClass); // Clears form state.
                 console.log("Successful Post!", res.data);
                 setId(res.data.id)
+                history.push("/instructor")
             })
             .catch(err => console.log(err));
             };
@@ -182,7 +179,6 @@ export default function NewClassForm({deleteClass, setCurrentClasses}) {
                 <button type="submit" disabled={buttonDisabled}>Submit</button>
         </form>
     
-        {/* <button onClick={deleteClass(idD)}>Delete Class(Not hooked up)</button> */}
 
     </div>
 

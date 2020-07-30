@@ -7,7 +7,7 @@ const Home = () => {
         <div>
             <h1>User Registration (Client)</h1>
             <Link to="/client-registration">
-        <button>Click</button>
+            <button>Click</button>
           </Link>
         
         <div className="instructor">

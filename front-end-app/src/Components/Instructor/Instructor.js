@@ -3,6 +3,8 @@ import axios from 'axios';
 import UpdateFitnessClass from './UpdateFitnessClass';
 import NewClassForm from './NewClassForm';
 import authAxios from "../Util/authAxios";
+import ClassCard from "../../Components/ClassCard";
+import {Route, Link} from "react-router-dom";
 
 
 export default function Instructor(){
@@ -26,24 +28,16 @@ export default function Instructor(){
             })
             .catch(err => console.log(err))
       },[])
+   
     
     return(
         <>
-            {currentClasses.map(session => {
-                return(
-                    <>
-                        <p>{session.name}</p> //Create Card component
-                        <p>{session.date}</p>
-                        <p>{session.intensity}</p>
-                    </>
-                )
-            })}
-           
-             <NewClassForm setCurrentClasses={setCurrentClasses} />
+        {currentClasses.map(session => {return <ClassCard key={session.id} session={session} />})}
+
+           <Route exact path="/add-new-class" render={() => <NewClassForm setCurrentClasses={setCurrentClasses} /> }/>
              
-             <UpdateFitnessClass  putClass={putClass} />
+            <UpdateFitnessClass  putClass={putClass} />
         </>
-        
     )
 
 }

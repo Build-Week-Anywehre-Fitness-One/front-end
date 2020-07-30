@@ -28,11 +28,7 @@ const Login = (props) => {
     })
   },[loginState]);
 
-// new state to set post request too. So we can console.log and see it.
-const [post, setPost] = useState([]);
-
 const validateChange = e => {
-
     yup
       .reach(formSchema, e.target.name)
       .validate(e.target.value)
@@ -50,7 +46,6 @@ const validateChange = e => {
       });
   };
 
-
    const inputChange = e => {
     //    console.log(e.target.value)
        e.persist();
@@ -58,10 +53,8 @@ const validateChange = e => {
        setLoginState({
            ...loginState,
            [e.target.name] : e.target.value
-       })
-        
-       validateChange(e);
-      
+       })     
+       validateChange(e); 
    }
 
     // Submit handler
@@ -71,62 +64,48 @@ const validateChange = e => {
       axios
       .post("https://anywhere-fitness-app1.herokuapp.com/api/login", loginState)
       .then(res => {
-        setPost(res.data); 
-        console.log("success", post);
-        localStorage.setItem("token", res.data.payload);
+        console.log("payload", res.data);
+        localStorage.setItem("token", res.data.token);
         //redirect the user to the app's main logged in page
-        props.history.push("") //protected route path goes here.
-        // reset form if successful
-        setLoginState(defaultState);
+        props.history.push("/instructor") //protected route path goes here.
       })
       .catch(err => console.log(err.response));
     };
 
-
     return (
-
        <div>
+          <h1 class="headar-signin">Sign In</h1>
+          
+          <form onSubmit={formSubmit}>
+          <label htmlFor="username">
+              Username
+              <input
+              type="text"
+              name="username"
+              id="username"
+              onChange={inputChange}
+              value={loginState.username}
+                />
+                {errors.username.length > 0 ? <p className='error'>{errors.username}</p> : null}
+          </label>
 
-       
-       <h1>User Login</h1>
-       
-       <form onSubmit={formSubmit}>
-       <label htmlFor="username">
-           Username
-           <input
-           type="text"
-           name="username"
-           id="username"
-           onChange={inputChange}
-           value={loginState.username}
-            />
-            {errors.username.length > 0 ? <p className='error'>{errors.username}</p> : null}
-       </label>
+          <label htmlFor="password">
+              Password
+              <input 
+              type="password"
+              name="password"
+              id="password"
+              onChange={inputChange}
+              value={loginState.password}
+                />
+                {errors.password.length > 0 ? <p className='error'>{errors.password}</p> : null}
+          </label>
 
-       <label htmlFor="password">
-           Password
-           <input 
-           type="password"
-           name="password"
-           id="password"
-           onChange={inputChange}
-           value={loginState.password}
-            />
-            {errors.password.length > 0 ? <p className='error'>{errors.password}</p> : null}
-       </label>
-
-       <button type="submit" disabled={buttonDisabled}>Submit</button>
-
-
-
-       </form>
+          <button type="submit" disabled={buttonDisabled}>Submit</button>
+          </form>
     
-       
-
        </div>
     )
-    
-    
 }
 
 export default Login;

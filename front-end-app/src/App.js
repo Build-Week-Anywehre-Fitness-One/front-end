@@ -17,16 +17,15 @@ function App() {
       {/* //Make a Route to home that renders the Login page. */}
       
 
-      <Route exact path="/" component={Home} /> //ok
+      <Route exact path="/" component={Home} />
       
-      
-      <Route exact path="/client-registration" component={Client} /> //ok
+      <Route exact path="/client-registration" component={Client} />
 
       <Route exact path="/instructor-registration" component={RegInstructor} />
 
-      <Route path="/user-login" component={Login} />  //ok
+      <Route path="/user-login" component={Login} />  
 
-      <InstructorRoute exact path="/Instructor" component={Instructor}/>
+      <InstructorRoute exact path="/instructor" component={Instructor}/>
     </div>
   );
 }

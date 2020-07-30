@@ -1,10 +1,11 @@
 import React,{ useState,useEffect } from 'react';
-import axios from "axios";
+import authAxios from "../Util/authAxios";
+import {deleteClass} from '../Instructor/Instructor';
 import * as yup from 'yup';
 import './NewClassForm.css';
 
 
-export default function NewClassForm({deleteClass}) {
+export default function NewClassForm({deleteClass, setCurrentClasses}) {
 
     const formSchema = yup.object().shape({
 
@@ -18,6 +19,12 @@ export default function NewClassForm({deleteClass}) {
         maxClassSize: yup.string().required("Must include email address.")
         
       });
+
+    //   function deleteClass(id){
+    //     axios.delete(`https://anywhere-fitness-app1.herokuapp.com/api/classes/${id}`)
+    //         .then(res => console.log("Deleted!", res.data))
+    //         .catch(err => console.log(err))
+    // }
      
     //Default state
     const [intitialClass] = useState({
@@ -33,10 +40,9 @@ export default function NewClassForm({deleteClass}) {
 
     //Form state handled here
     const [classes, setClasses] = useState(intitialClass);
-
     //error state
     const [errors, setErrors] = useState(intitialClass);
-
+    const [idD, setId] = useState("");
     const [buttonDisabled, setButtonDisabled] = useState(true);
 
     useEffect(() => {
@@ -47,7 +53,6 @@ export default function NewClassForm({deleteClass}) {
     }, [classes]);
 
     const changeValidation = e => {
-
         yup
         .reach(formSchema, e.target.name)
         .validate(e.target.value)
@@ -66,7 +71,6 @@ export default function NewClassForm({deleteClass}) {
     }
 
     const handleChange = e => {
-        
         e.persist();
         setClasses({
             ...classes,
@@ -76,17 +80,19 @@ export default function NewClassForm({deleteClass}) {
         changeValidation(e);
     };
 
+    
+
     const formSubmit = e => {  
         e.preventDefault();
-        axios
+        authAxios()
             .post("https://anywhere-fitness-app1.herokuapp.com/api/classes", classes)
             .then(res => {
-                setClasses(res.data); // get just the form data from the REST api
-                console.log("successful", res.data);
-                // reset form if successful
-                setClasses(intitialClass);
+                setCurrentClasses(res.data)
+                setClasses(intitialClass); // Clears form state.
+                console.log("Successful Post!", res.data);
+                setId(res.data.id)
             })
-            .catch(err => console.log(err.response));
+            .catch(err => console.log(err));
             };
 
     return (
@@ -176,7 +182,8 @@ export default function NewClassForm({deleteClass}) {
                 <button type="submit" disabled={buttonDisabled}>Submit</button>
         </form>
     
-    {/* Add a button that onClick deletes the class based on its id(Which wll be a parameter in the APi call endpoint) */}
+        {/* <button onClick={deleteClass(idD)}>Delete Class(Not hooked up)</button> */}
+
     </div>
 
     )

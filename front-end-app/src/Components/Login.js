@@ -66,8 +66,10 @@ const validateChange = e => {
       .then(res => {
         console.log("payload", res.data);
         localStorage.setItem("token", res.data.token);
-        //redirect the user to the app's main logged in page
-        props.history.push("/instructor") //protected route path goes here.
+
+        res.data.role === "instructor" ?
+           (props.history.push("/instructor")
+           ) : (props.history.push("/client"))
       })
       .catch(err => console.log(err.response));
     };

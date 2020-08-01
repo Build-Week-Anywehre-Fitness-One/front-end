@@ -1,12 +1,15 @@
 import React,{ useState,useEffect } from 'react';
 import authAxios from "../Util/authAxios";
+import {connect} from 'react-redux';
 import {deleteClass} from '../Instructor/Instructor';
+import {submitClasses} from "../actions/submitClasses";
 import * as yup from 'yup';
 import './NewClassForm.css';
 
 
-export default function NewClassForm({deleteClass, setCurrentClasses, history}) {
+ function NewClassForm({submitClasses,state,deleteClass, setCurrentClasses, currentClasses,history}) {
 
+    console.log("State", state)
     const formSchema = yup.object().shape({
 
         name: yup.string().required("This is a required field."),
@@ -16,13 +19,9 @@ export default function NewClassForm({deleteClass, setCurrentClasses, history}) 
         duration: yup.string().required("This is a required field."),
         intensity: yup.string().required("This is a required field."),
         location: yup.string().required("This is a required field."),
-        maxClassSize: yup.string().required("Must include email address.")
-        
+        maxClassSize: yup.string().required("Must include email address.")    
       });
-
-   
-     
-    //Default state
+        
     const [intitialClass] = useState({
         name: "",
         type: "",
@@ -34,9 +33,7 @@ export default function NewClassForm({deleteClass, setCurrentClasses, history}) 
         maxClassSize: "",
     })
 
-    //Form state handled here
     const [classes, setClasses] = useState(intitialClass);
-    //error state
     const [errors, setErrors] = useState(intitialClass);
     const [idD, setId] = useState("");
     const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -76,20 +73,21 @@ export default function NewClassForm({deleteClass, setCurrentClasses, history}) 
         changeValidation(e);
     };
 
-    
 
     const formSubmit = e => {  
         e.preventDefault();
-        authAxios()
-            .post("https://anywhere-fitness-app1.herokuapp.com/api/classes", classes)
-            .then(res => {
-                setCurrentClasses(res.data)  //adds to Instructor state to render
-                setClasses(intitialClass); // Clears form state.
-                console.log("Successful Post!", res.data);
-                setId(res.data.id)
-                history.push("/instructor")
-            })
-            .catch(err => console.log(err));
+        submitClasses(classes)
+
+        // authAxios()
+        //     .post("https://anywhere-fitness-app1.herokuapp.com/api/classes", classes)
+        //     .then(res => {
+        //         setCurrentClasses([...currentClasses, res.data]) //adds to Instructor state to render
+        //         setClasses(intitialClass); // Clears form state.
+        //         console.log("Successful Post!", res.data);
+        //         setId(res.data.id)
+        //         // history.push("/instructor")
+        //     })
+        //     .catch(err => console.log(err));
             };
 
     return (
@@ -184,3 +182,12 @@ export default function NewClassForm({deleteClass, setCurrentClasses, history}) 
 
     )
 }
+
+const mapStateToProps = (state) => {
+    return {
+        state //maps over smurfs in our state and assigns it
+    }                         // to what we assign as a key
+}
+
+export default connect(
+             mapStateToProps, {submitClasses})(NewClassForm)

@@ -7,13 +7,9 @@ const formSchema = yup.object().shape({
     username: yup.string().required("This is a required field."),
     password: yup.string().required("This is a required field."),
     role: yup.string().required("This is a required field."),
-
-    
   });
 
-
-const Client = () => {
-
+const RegClient = () => {
     //default state 
     const [defaultState ] = useState({
         username: "",
@@ -70,8 +66,7 @@ const validateChange = e => {
            [e.target.name] : e.target.value
        })
         
-       validateChange(e);
-      
+       validateChange(e);      
    }
 
     // Submit handler
@@ -137,11 +132,7 @@ const validateChange = e => {
 
        <button type="submit" disabled={buttonDisabled}>Submit</button>
 
-
-
        </form>
-    
-       
 
        </div>
     )
@@ -149,4 +140,4 @@ const validateChange = e => {
     
 }
 
-export default Client;
+export default RegClient;

@@ -4,48 +4,8 @@ import styled from "styled-components";
 import img from "../Images/signUp_page.jpg";
 
 const Home = () => {
-    
-    return (
-        <HomeContainer>
-          <section  />
-          
-          <div class="sign-up">
-          <h1 class="header">Create Account</h1>
-           
-          <div>
-            <h3>User Registration (Client)</h3>
-            <Link to="/client-registration">
-            <button>Click</button>
-          </Link>
-          </div>
-        
-        <div>
-        <p className="instructor">
-          <h3>User Registration (Instructor)</h3>
-            <Link to="/instructor-registration">
-        <button>Sign Up</button>
-          </Link>
-        </p>
-        </div>
 
-         
-        <div>
-        <p>
-        <h3 className="login">User Login</h3>
-        <Link to="/user-login">
-        <button>Login</button>
-        </Link>
-        </p>
-        </div>
-        </div>
-
-        </HomeContainer>
-
-    )
-
-}
-
-const HomeContainer = styled.div`
+  const HomeContainer = styled.div`
  
     width: 100%;
     display: flex;
@@ -85,8 +45,50 @@ const HomeContainer = styled.div`
     font-size: 3rem;
 }
    
+   
+`   
+    
+  return (
+        <HomeContainer>
+          <section  />
+          
+          <div class="sign-up">
+          <h1 class="header">Create Account</h1>
+           
+          <div>
+            <h3>User Registration (Client)</h3>
+            <Link to="/client-registration">
+        <button>Sign Up</button>
+          </Link>
+          </div>
+        
+        <div>
+        <p className="instructor">
+          <h3>User Registration (Instructor)</h3>
+            <Link to="/instructor-registration">
+        <button>Sign Up</button>
+          </Link>
+        </p>
+        </div>
 
-`
+         
+        <div>
+        <p>
+        <h3 className="login">User Login</h3>
+        <Link to="/user-login">
+        <button>Login</button>
+        </Link>
+        </p>
+        </div>
+        </div>
+
+        </HomeContainer>
+
+    )
+
+}
+
+
 
 export default Home;
 

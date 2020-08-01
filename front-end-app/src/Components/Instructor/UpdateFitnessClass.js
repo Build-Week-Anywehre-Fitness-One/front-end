@@ -6,6 +6,7 @@ import './NewClassForm.css';
 export default function UpdateFitnessClass({putClass}){
 
     const formSchema = yup.object().shape({
+        id: yup.string().required("This is a required Field"),
         startTime: yup.string().required("This is a required field."),
         date: yup.string(),
         duration: yup.string().required("This is a required field."),
@@ -17,6 +18,7 @@ export default function UpdateFitnessClass({putClass}){
 
       //Default state
     const [intitialClass] = useState({
+        id: "",
         startTime: "",
         date: "",
         duration: "",
@@ -71,11 +73,21 @@ export default function UpdateFitnessClass({putClass}){
     //Update this function
     const putClassFunc = e => {  
         e.preventDefault();
-        putClass(2, newClass)
+        putClass(newClass.id, newClass)
     }
         
     return(
         <form onSubmit={putClassFunc}>
+
+            <label htmlFor="ID">ID</label>
+            <input 
+                type="text"
+                placeholder="id"
+                name="id"
+                onChange={handleChange}
+                value={newClass.id}
+                    />
+            {errors.id.length > 0 ? <p className='error'>{errors.username}</p> : null}
 
             <label htmlFor="startTime">StartTime</label>
             <input 

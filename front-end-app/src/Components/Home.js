@@ -49,6 +49,7 @@ const HomeContainer = styled.div`
  
     width: 100%;
     display: flex;
+    
 
    section {
     display: flex;

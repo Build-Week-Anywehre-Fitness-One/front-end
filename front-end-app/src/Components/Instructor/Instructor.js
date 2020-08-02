@@ -20,9 +20,7 @@ function Instructor({putClass, currentClasses, readClasses}){
               .put(`https://anywhere-fitness-app1.herokuapp.com/api/classes/${id}`, updatedClass)
               .then(res => {
                   console.log("RES PUT", res)
-                //   const newRecipes = currentClasses.filter((classes) => recipe.id !== id);
-                //     setRecipes(newRecipes);
-                //     history.push("/recipes")
+                  readClasses()
                 })
               .catch(err => console.log(err));
               // push the user back to the classes
@@ -45,6 +43,9 @@ function Instructor({putClass, currentClasses, readClasses}){
 
     return(
         <>
+
+            <h1>Anywhere Fitness!</h1>
+            
               {currentClasses ? currentClasses.map((session, index) => {
         return(
             <div>

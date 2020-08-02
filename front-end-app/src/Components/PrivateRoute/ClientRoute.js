@@ -1,7 +1,7 @@
 import React from 'react'
 import {Route, Redirect} from "react-router-dom"
 
-export const InstructorRoute = ({ component: Component, ...rest }) => (     // Ask what component: Component means.
+export const ClientRoute = ({ component: Component, ...rest }) => (     // Ask what component: Component means.
          <Route 
              {...rest} 
              render={props => 
@@ -11,4 +11,4 @@ export const InstructorRoute = ({ component: Component, ...rest }) => (     // A
             }  
         /> 
         
-)   
+)

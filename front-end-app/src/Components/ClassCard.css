@@ -1,13 +1,10 @@
-.NewClassForm {
+.card-content {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     background-color: cadetblue;
     justify-content: center;
+    
     width: 40%;
-  }
 
-.container{
-    display: flex;
-    justify-content: center;
-}
-  
+  }

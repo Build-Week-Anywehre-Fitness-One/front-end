@@ -6,9 +6,9 @@ import {InstructorRoute} from './Components/PrivateRoute/InstructorRoute';
 import RegClient from './Components/RegClient';
 import Instructor from './Components/Instructor/Instructor';
 import Client from './Components/Client/Client';
-import Home from "../../front-end-app/src/Components/Home";
+import Home from "../src/Components/Home";
 import RegInstructor from "./Components/RegInstructor";
-import Login from '../../front-end-app/src/Components/Login';
+import Login from "../src/Components/Login";
 import { ClientRoute } from './Components/PrivateRoute/ClientRoute';
 
 import "./App.css";

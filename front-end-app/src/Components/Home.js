@@ -9,6 +9,7 @@ const Home = () => {
  
     width: 100%;
     display: flex;
+    
 
    section {
     display: flex;

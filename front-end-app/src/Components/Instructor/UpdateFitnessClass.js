@@ -77,7 +77,7 @@ export default function UpdateFitnessClass({putClass}){
     }
         
     return(
-        <form onSubmit={putClassFunc}>
+        <form className="form" onSubmit={putClassFunc}>
 
             <label htmlFor="ID">ID</label>
             <input 

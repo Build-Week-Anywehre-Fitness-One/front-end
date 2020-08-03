@@ -92,6 +92,8 @@ import './NewClassForm.css';
 
     return (
         <div className="container">
+
+        <h1 className="headar-signin">Create your class</h1>
       
         <form onSubmit={formSubmit} className="NewClassForm">
 

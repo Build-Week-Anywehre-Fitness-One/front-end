@@ -38,6 +38,7 @@ textarea {
   font-size: 1.4rem;
   letter-spacing: 0.5px;
   background-color: white;
+  
 }
 select {
   height: 40px;
@@ -110,6 +111,20 @@ button:disabled {
 .headar-signin {
   font-size: 5rem;
   margin-bottom: 20px;
+}
+
+.form {
+  margin: 0 auto;
+  font-family: "Source Sans Pro", sans-serif;
+  background: cadetblue;
+  color: #fff;
+  padding: 30px;
+  width: 350px;
+  min-height: 500px;
+  border-radius: 4px;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  
+  
 }
 
 

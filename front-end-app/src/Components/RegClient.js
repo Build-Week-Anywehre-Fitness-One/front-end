@@ -92,7 +92,7 @@ const validateChange = e => {
        
        <h1 class="headar-signin">Sign Up</h1>
        
-       <form onSubmit={formSubmit}>
+       <form className="form" onSubmit={formSubmit}>
        <label htmlFor="username">
            Username
            <input
